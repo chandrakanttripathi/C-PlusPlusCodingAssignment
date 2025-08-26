@@ -1,0 +1,1 @@
+// This will NamedPipe Service concreate implementation
