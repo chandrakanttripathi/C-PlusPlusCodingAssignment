@@ -1,6 +1,6 @@
 param(
     [string]$exePath = "build\NumberService.exe",
-    [string]$serviceName = "NumService",
+    [string]$serviceName = "NumberService",
     [string]$displayName = "Number Store Service",
     [string]$account = "NT AUTHORITY\LocalService"
 )
@@ -41,4 +41,4 @@ Write-Host "Running: $cmd"
 Invoke-Expression $cmd
 
 Write-Host "Service created. Start it with:"
-Write-Host "sc start $serviceName"
+Write-Host "sc.exe start $serviceName"

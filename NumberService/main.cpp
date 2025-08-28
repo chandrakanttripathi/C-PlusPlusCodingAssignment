@@ -52,32 +52,49 @@ void WINAPI ServiceMain(DWORD, LPWSTR*) {
     gStatusHandle = RegisterServiceCtrlHandlerW(L"NumberService", ServiceCtrlHandler);
     if (!gStatusHandle) return;
 
+    // --- Report START_PENDING ---
     gServiceStatus.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
-    gServiceStatus.dwServiceSpecificExitCode = 0;
-    gServiceStatus.dwControlsAccepted =
-        SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_SHUTDOWN;
-
+    gServiceStatus.dwControlsAccepted = 0;  // NONE while starting
     gServiceStatus.dwCurrentState = SERVICE_START_PENDING;
     gServiceStatus.dwWin32ExitCode = NO_ERROR;
-    gServiceStatus.dwCheckPoint = 0;
-    gServiceStatus.dwWaitHint = 0;
+    gServiceStatus.dwServiceSpecificExitCode = 0;
+    gServiceStatus.dwCheckPoint = 1;
+    gServiceStatus.dwWaitHint = 3000;       // 3 seconds
     SetServiceStatus(gStatusHandle, &gServiceStatus);
 
+    // init service objects
     gSrvHandler = new ServerRequestHandler(gStore);
     gServer = new NamedPipeServer(kPipeName,
         [=](const std::string& r) { return gSrvHandler->HandleRequest(r); }, 8);
-
     gServer->Start();
 
+    // --- Report RUNNING ---
+    gServiceStatus.dwControlsAccepted =
+        SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_SHUTDOWN;
     gServiceStatus.dwCurrentState = SERVICE_RUNNING;
+    gServiceStatus.dwCheckPoint = 0;
+    gServiceStatus.dwWaitHint = 0;
     SetServiceStatus(gStatusHandle, &gServiceStatus);
 
     while (!gStopRequested.load()) {
         Sleep(500);
     }
 
+    // --- Report STOP_PENDING ---
+    gServiceStatus.dwControlsAccepted = 0;
+    gServiceStatus.dwCurrentState = SERVICE_STOP_PENDING;
+    gServiceStatus.dwCheckPoint = 1;
+    gServiceStatus.dwWaitHint = 3000;
+    SetServiceStatus(gStatusHandle, &gServiceStatus);
+
     if (gServer) { gServer->Stop(); delete gServer; gServer = nullptr; }
     if (gSrvHandler) { delete gSrvHandler; gSrvHandler = nullptr; }
+
+    // --- Report STOPPED ---
+    gServiceStatus.dwCurrentState = SERVICE_STOPPED;
+    gServiceStatus.dwCheckPoint = 0;
+    gServiceStatus.dwWaitHint = 0;
+    SetServiceStatus(gStatusHandle, &gServiceStatus);
 }
 
 
