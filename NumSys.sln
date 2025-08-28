@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NumberService", "NumberService\NumberService.vcxproj", "{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NumberCli", "NumberCli\NumberCli.vcxproj", "{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{532E7ACE-CB00-4204-A235-986295954C7F}"
+	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
+		install-service.ps1 = install-service.ps1
+		uninstall-service.ps1 = uninstall-service.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}.Debug|x64.ActiveCfg = Debug|x64
+		{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}.Debug|x64.Build.0 = Debug|x64
+		{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}.Debug|x86.ActiveCfg = Debug|Win32
+		{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}.Debug|x86.Build.0 = Debug|Win32
+		{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}.Release|x64.ActiveCfg = Release|x64
+		{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}.Release|x64.Build.0 = Release|x64
+		{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}.Release|x86.ActiveCfg = Release|Win32
+		{3CA3B07C-15BA-4056-BEA1-EF623ADE1150}.Release|x86.Build.0 = Release|Win32
+		{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}.Debug|x64.ActiveCfg = Debug|x64
+		{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}.Debug|x64.Build.0 = Debug|x64
+		{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}.Debug|x86.ActiveCfg = Debug|Win32
+		{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}.Debug|x86.Build.0 = Debug|Win32
+		{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}.Release|x64.ActiveCfg = Release|x64
+		{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}.Release|x64.Build.0 = Release|x64
+		{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}.Release|x86.ActiveCfg = Release|Win32
+		{65C916A7-5B4F-43A5-A2A7-A56A6BA2B497}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F43426E-0C19-4785-8455-8A5C2C3E35CF}
+	EndGlobalSection
+EndGlobal
